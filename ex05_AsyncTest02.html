@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>비동기코드를 만들어보자 - 콜백함수전달 </h1>
+    <script>
+    function taskA(a, b, cb){
+        setTimeout(() => {
+            const res = a + b;
+            console.log("taskA end res = " + res) ;
+            cb(res);
+        }, 2000);
+    }
+    taskA(3,4 , (result)=>{
+        console.log("result = " + result) ;
+    });
+    console.log("code End") ;
+    </script>
+</body>
+</html>

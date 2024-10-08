@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>
+        Promise 객체 : 콜백지옥을 벗어나기 위한 객체(Asynchronous)
+    </h3>
+    <script>
+        const promise=new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                let a=5;
+                if(a===5)
+                {
+                    resolve(a+10);
+                }
+                else
+                {
+                    // reject("fail....");
+                    reject(new Error("문제가 있어요"));
+                }
+            },1000);
+        });
+
+        setTimeout(()=>{
+            console.log(promise);
+        },2000);
+
+
+        console.log(promise);
+
+        console.log("code End....");
+    </script>
+    
+</body>
+</html>

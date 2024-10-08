@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>작업 여러개를 만들어서 A -> B -> C 순으로 실행해보자  <br>
+        콜백함수의 결과를 받아서  다른 작업의 인자로 전달 하여 호출해보자 <br>
+        결론 : 콜백지옥!!!!
+        setTimeout 은 비동기함수
+    </h1>
+    <script>
+    function taskA(a, b, cb){
+        setTimeout(() => {
+            const res = a + b;
+            cb(res);
+        }, 2000);
+    }
+
+    function taskB(a, cb){
+        setTimeout(() => {
+            const res = a * 2;
+            cb(res);
+        }, 1000);
+    }
+
+    function taskC(a, cb){
+        setTimeout(() => {
+            const res = a * -1;
+            cb(res);
+        }, 2000);
+    }
+
+
+    taskA(3,4 , (result)=>{
+        console.log("taskA result = " + result) ;
+        taskB(5 , (b_result)=>{
+          console.log("taskB result = " + b_result) ;
+          taskC(7 , (c_result)=>{
+                  console.log("taskC result = " + c_result) ;
+          });
+       });
+    });
+    
+
+    
+    
+
+    console.log("code End") ;
+    </script>
+</body>
+</html>

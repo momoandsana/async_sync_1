@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Promise  이용 - then : 콜백지옥을 벗어나기 위한 Promise</h1>
+    <script>
+        function taskA(a, b) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const res = a + b;
+                    resolve(res);
+                }, 2000);
+            });
+        }
+    
+        function taskB(a) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const res = a * 2;
+                    resolve(res);
+                }, 1000);
+            });
+        }
+    
+        function taskC(a) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const res = a * -1;
+                    resolve(res);
+                }, 2000);
+            });
+        }
+    
+        taskA(3, 4)
+            .then(resultA => {
+                console.log("taskA result = " + resultA);
+                return taskB(5); // taskB를 호출하고 결과를 반환
+            })
+            .then(resultB => {
+                console.log("taskB result = " + resultB);
+                return taskC(7); // taskC를 호출하고 결과를 반환
+            })
+            .then(resultC => {
+                console.log("taskC result = " + resultC);
+            })
+            .catch(error => {
+                console.error("An error occurred:", error);
+            });
+    
+        console.log("code End");
+    </script>
+    
+    
+</body>
+</html>

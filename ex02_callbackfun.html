@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>콜백함수를 이용한 코드</h1>
+    <script>
+     function add(a, b){
+        return a +b;
+     }
+     function minus(a, b){
+        return a - b;
+     }
+
+     function print(a, b,  callback){
+        let result = callback(a,b);
+        console.log("결과 = "+  result);
+     }
+   //   매개변수에 함수를 전달
+     
+
+     print(5,3, add)
+     print(5,3, minus)
+
+    </script>
+</body>
+</html>

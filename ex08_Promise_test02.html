@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>
+        Promise 객체 : 콜백지옥을 벗어나기 위한 객체(Asynchronous)
+    </h3>
+    <script>
+
+        const taskA=()=>{// 일반적으로 함수안에서 promise 작업을 한다
+            return new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                let a=5;
+                if(a===5)
+                {
+                    resolve(a+10);
+                }
+                else
+                {
+                    // reject("fail....");
+                    reject(new Error("문제가 있어요"));
+                }
+            },1000);
+        });
+        
+        }
+
+        //호출
+        const re=taskA();
+        // re.then((a)=>{
+        //     console.log(a+" ok");// a+10 값 출력
+        // },
+        // (err)=>{
+        //     console.log(err+" fail");// 문제가 있어요 출력 
+        // }
+        // ); // 성공했을 때 콜백, 실패했을 때 콜백
+
+        //후속작업->결과에 따라 후속작업이 필요, 결과가 와야지 실행
+        re
+        .then((a)=>{console.log(a+" successed")})
+        .catch((err)=>{console.log(err+"fail")});
+
+
+        console.log("code End....");
+    </script>
+    
+</body>
+</html>

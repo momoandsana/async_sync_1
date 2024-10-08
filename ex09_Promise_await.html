@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Promise  이용 - async , await : Promise를 좀더 세련되고 직관적으로 처리 할수 있도록 돕는다.
+        비동기 != 비동기 통신 </h1>
+    <script>
+        function taskA(a, b) {
+            return new Promise((resolve) => {
+                setTimeout(() => {//setTimeout 내부에서 계산이 끝난 후 resolve를 호출하여 결과를 전달
+                    const res = a + b;
+                    resolve(res);//
+                }, 2000);
+            });
+        }
+    
+        function taskB(a) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const res = a * 2;
+                    resolve(res);
+                }, 1000);
+            });
+        }
+    
+        function taskC(a) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const res = a * -1;
+                    resolve(res);
+                }, 2000);
+            });
+        }
+    
+        async function runTasks() {//async로 선언하여 비동기 작업을 순차적으로 실행
+            const resultA = await taskA(3, 4); //await를 사용하여 Promise가 해결될 때까지 기다리고, 그 결과를 변수에 저장
+            console.log("taskA result = " + resultA);
+            
+            // A가 끝나야지 B로 내려간다
+            const resultB = await taskB(5);
+            console.log("taskB result = " + resultB);
+    
+            const resultC = await taskC(7);
+            console.log("taskC result = " + resultC);
+        }
+    
+        runTasks();
+    
+        console.log("code End");
+    </script>
+    
+</body>
+</html>
